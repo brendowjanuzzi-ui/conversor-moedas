@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas Real-Time</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>💵 Conversor de Dólar</h1>
+        <p id="cotacao-atual">Carregando cotação...</p>
+
+        <div class="input-group">
+            <label for="usd">Valor em Dólar (USD)</label>
+            <input type="number" id="usd" placeholder="0.00" step="0.01">
+        </div>
+
+        <div class="input-group">
+            <label for="brl">Valor em Real (BRL)</label>
+            <input type="number" id="brl" readonly>
+        </div>
+
+        <button id="update-btn">Atualizar Cotação</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
