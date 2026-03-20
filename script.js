@@ -1,49 +1,50 @@
-const inputValor = document.getElementById('input-valor');
-const brlResult = document.getElementById('brl-result');
-const moedaSelect = document.getElementById('moeda-select');
-const cotacaoTexto = document.getElementById('cotacao-atual');
+const valorInput = document.getElementById('valor-input');
+const valorResultado = document.getElementById('valor-resultado');
+const moedaOrigem = document.getElementById('moeda-origem');
+const rateText = document.getElementById('rate-text');
+const aiStatus = document.getElementById('ai-status');
 
-async function converter() {
-    const moedaEstrangeira = moedaSelect.value;
-    const url = `https://economia.awesomeapi.com.br/last/${moedaEstrangeira}-BRL`;
+const API_URL = "https://economia.awesomeapi.com.br/last/";
 
+async function updateConversion() {
+    const moeda = moedaOrigem.value;
+    
     try {
-        cotacaoTexto.innerText = "Atualizando...";
-        
-        const response = await fetch(url);
+        const response = await fetch(`${API_URL}${moeda}-BRL`);
         const data = await response.json();
-        
-        // A API retorna objetos como USDBRL, EURBRL, etc.
-        const parMoedas = `${moedaEstrangeira}BRL`;
-        const cotacao = parseFloat(data[parMoedas].bid);
-        
-        // Formata a exibição da cotação (Bitcoin precisa de mais decimais)
-        const decimais = moedaEstrangeira === 'BTC' ? 3 : 2;
-        cotacaoTexto.innerText = `1 ${moedaEstrangeira} = R$ ${cotacao.toLocaleString('pt-BR', { minimumFractionDigits: decimais })}`;
+        const cotacao = parseFloat(data[`${moeda}BRL`].bid);
 
-        // Realiza o cálculo se houver valor no input
-        if (inputValor.value > 0) {
-            const resultado = inputValor.value * cotacao;
-            brlResult.value = resultado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        } else {
-            brlResult.value = "";
+        // Atualiza taxa live
+        rateText.innerText = `R$ ${cotacao.toFixed(2)}`;
+
+        // Calcula resultado
+        if(valorInput.value) {
+            const final = valorInput.value * cotacao;
+            valorResultado.value = final.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
 
+        generateAIInsight(moeda, cotacao);
+
     } catch (error) {
-        cotacaoTexto.innerText = "Erro ao conectar com a API.";
-        console.error("Erro na requisição:", error);
+        console.error("Erro na busca:", error);
     }
 }
 
-// Evento: Converte enquanto o usuário digita
-inputValor.addEventListener('input', converter);
+function generateAIInsight(moeda, valor) {
+    // Simulação de IA analisando o valor (pode ser conectado a uma API de IA real no futuro)
+    let insight = "";
+    if (moeda === 'BTC') {
+        insight = "Alta volatilidade detectada. O Bitcoin apresenta forte resistência técnica hoje.";
+    } else if (valor > 5.50) {
+        insight = "O Real está perdendo força frente a esta moeda. Momento de cautela para compras.";
+    } else {
+        insight = "Taxa estável. Ótima janela para operações de câmbio planejadas.";
+    }
+    aiStatus.innerText = insight;
+}
 
-// Evento: Converte quando o usuário troca a moeda no select
-moedaSelect.addEventListener('change', () => {
-    inputValor.value = ""; // Limpa o input para uma nova conversão
-    brlResult.value = "";
-    converter();
-});
+valorInput.addEventListener('input', updateConversion);
+moedaOrigem.addEventListener('change', updateConversion);
 
-// Inicializa a cotação ao abrir a página
-converter();
+// Início
+updateConversion();
