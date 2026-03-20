@@ -1,16 +1,14 @@
-# 💵 Conversor de Moedas Real-Time
+# 🌌 NexGen AI - Conversor Inteligente
 
-Aplicação web que realiza a conversão de Dólar (USD) para Real (BRL) utilizando dados em tempo real fornecidos por API externa.
+Uma interface de alta performance com design futurista (Glassmorphism) que utiliza dados em tempo real e análise preditiva simulada por IA.
 
 ![Capa do Projeto](capa.png)
 
-## 🚀 Tecnologias e Recursos
-- **JavaScript (ES6+)**: Uso de `async/await` e `fetch` para requisições assíncronas.
-- **API Real-Time**: Consumo da AwesomeAPI para cotações atualizadas.
-- **CSS Moderno**: Interface dark mode com foco em experiência do usuário (UX).
-- **Design Responsivo**: Adaptável para diferentes tamanhos de tela.
+## 🛠 Tecnologias de Ponta
+- **Glassmorphism UI**: Design moderno com desfoque de fundo e transparências.
+- **Background Animado**: Experiência visual imersiva com gradientes dinâmicos.
+- **AI Insights**: Lógica de análise que gera recomendações baseadas na cotação.
+- **Real-Time Data**: Conexão direta com a AwesomeAPI para cotações instantâneas.
 
-## 🧠 O que eu aprendi neste projeto
-- Como conectar uma aplicação com dados externos do mundo real.
-- Manipulação de objetos JSON recebidos via API.
-- Tratamento de erros em requisições de rede.
+## 🧠 Evolução Técnica
+Este projeto demonstra minha transição para interfaces de alto nível, saindo de formulários estáticos para aplicações web dinâmicas e inteligentes que focam na experiência do usuário (UX).
